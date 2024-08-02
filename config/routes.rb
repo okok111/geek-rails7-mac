@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'tweets/new' => 'tweets#new'
   post 'tweets' => 'tweets#create'
   get 'tweets/:id' => 'tweets#show',as: 'tweet'
+  patch 'tweets/:id' => 'tweets#update'
+  get 'tweets/:id/edit' => 'tweets#edit', as:'edit_tweet'
 
   root 'hello#index'
   # Defines the root path route ("/")
