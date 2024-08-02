@@ -30,6 +30,12 @@ class TweetsController < ApplicationController
       redirect_to :action => "new"
     end
   end
+
+  def destroy
+    tweet = Tweet.find(params[:id])
+    tweet.destroy
+    redirect_to action: :index
+  end
   
   private
   def tweet_params
