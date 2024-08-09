@@ -1,7 +1,14 @@
 <h1>GeekTwitter</h1>
 <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <h3>Tweet一覧</h3>
-<%= link_to "新規投稿へ", tweets_new_path %>
+
+<h3>投稿を検索</h3>
+ <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= text_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+<% end %>
+
+<%= link_to "新規投稿",new_tweet_path %>
 <div class="tweets-container">
   <% @tweets.each do |t| %>
     <div class="tweet">
