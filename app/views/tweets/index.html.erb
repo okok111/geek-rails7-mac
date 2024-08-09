@@ -25,8 +25,7 @@
 
 <%= link_to "新規投稿",new_tweet_path %>
 
-<%= page_entries_info @tweets %>
-<%= paginate @tweets %>
+
 
 <div class="tweets-container">
   <% @tweets.each do |t| %>

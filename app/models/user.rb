@@ -10,5 +10,7 @@ class User < ApplicationRecord
           self.likes.exists?(tweet_id: tweet.id)
          end
          has_many :comments, dependent: :destroy
+         validates :name, presence: true #追記
+         validates :profile, length: { maximum: 200 } 
          has_one_attached :image
 end
