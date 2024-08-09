@@ -5,4 +5,6 @@ class Tweet < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_users, through: :likes, source: :user
   has_many :comments, dependent: :destroy
+  validates :name, presence: true #追記
+  validates :profile, length: { maximum: 200 } 
 end

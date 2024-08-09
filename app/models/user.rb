@@ -10,4 +10,5 @@ class User < ApplicationRecord
           self.likes.exists?(tweet_id: tweet.id)
          end
          has_many :comments, dependent: :destroy
+         has_one_attached :image
 end
