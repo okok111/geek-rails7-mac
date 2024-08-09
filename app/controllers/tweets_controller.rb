@@ -5,6 +5,20 @@ class TweetsController < ApplicationController
     search = params[:search]
     @tweets = @tweets.joins(:user).where("body LIKE ?", "%#{search}%") if search.present?
     @tweets = @tweets.page(params[:page]).per(3)
+
+    if params[:tag_ids]
+      @tweets = []
+      params[:tag_ids].each do |key, value|
+        if value == "1"
+          tag_tweets = Tag.find_by(name: key).tweets
+          @tweets = @tweets.empty? ? tag_tweets : @tweets & tag_tweets
+        end
+      end
+    end
+
+    if params[:tag]
+      Tag.create(name: params[:tag])
+    end
   end
 
   def new
@@ -46,7 +60,7 @@ class TweetsController < ApplicationController
   
   private
   def tweet_params
-    params.require(:tweet).permit(:body,:image)
+    params.require(:tweet).permit(:body,:image, tag_ids: [])
   end
 
 end
